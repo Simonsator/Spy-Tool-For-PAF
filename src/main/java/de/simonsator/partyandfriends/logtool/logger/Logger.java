@@ -1,0 +1,51 @@
+package de.simonsator.partyandfriends.logtool.logger;
+
+import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.plugin.Plugin;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author simonbrungs
+ * @version 1.0.0 20.11.16
+ */
+public abstract class Logger {
+	private final File FILE;
+	protected List<String> cache = new ArrayList<>();
+
+	public Logger(File pFile, Plugin pPlugin) throws IOException {
+		FILE = pFile;
+		File folder = FILE.getParentFile();
+		if (!folder.exists())
+			folder.mkdir();
+		if (!FILE.exists())
+			FILE.createNewFile();
+		ProxyServer.getInstance().getScheduler().schedule(pPlugin, new Runnable() {
+			@Override
+			public void run() {
+				try {
+					save();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}, 0, 15, TimeUnit.MINUTES);
+	}
+
+	public abstract void writeln(OnlinePAFPlayer pSender, Object pReceiver, String pMessage);
+
+	public void save() throws IOException {
+		Path file = Paths.get(FILE.getAbsolutePath());
+		Files.write(file, cache, Charset.forName("UTF-8"));
+		cache = new ArrayList<>();
+	}
+}
