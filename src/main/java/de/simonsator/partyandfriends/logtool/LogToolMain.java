@@ -1,6 +1,7 @@
 package de.simonsator.partyandfriends.logtool;
 
 import de.simonsator.partyandfriends.api.events.message.FriendMessageEvent;
+import de.simonsator.partyandfriends.api.events.message.FriendOnlineMessageEvent;
 import de.simonsator.partyandfriends.api.events.message.PartyMessageEvent;
 import de.simonsator.partyandfriends.logtool.logger.FriendLogger;
 import de.simonsator.partyandfriends.logtool.logger.PartyLogger;
@@ -44,6 +45,11 @@ public class LogToolMain extends Plugin implements Listener {
 	@EventHandler
 	public void friendMessage(FriendMessageEvent pEvent) {
 		friendLogger.writeln(pEvent.getSender(), pEvent.getReceiver(), pEvent.getMessage());
+	}
+
+	@EventHandler
+	public void friendMessage(FriendOnlineMessageEvent pEvent) {
+
 	}
 
 	@EventHandler

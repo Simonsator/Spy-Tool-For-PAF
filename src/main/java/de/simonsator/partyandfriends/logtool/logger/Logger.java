@@ -5,11 +5,8 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -44,8 +41,9 @@ public abstract class Logger {
 	public abstract void writeln(OnlinePAFPlayer pSender, Object pReceiver, String pMessage);
 
 	public void save() throws IOException {
-		Path file = Paths.get(FILE.getAbsolutePath());
-		Files.write(file, cache, Charset.forName("UTF-8"));
+		FileOutputStream fos = new FileOutputStream(FILE, true);
+		for (String line : cache)
+			fos.write((line + "\n").getBytes());
 		cache = new ArrayList<>();
 	}
 }
