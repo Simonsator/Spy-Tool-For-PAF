@@ -6,7 +6,7 @@
 
 	<groupId>de.simonsator</groupId>
 	<artifactId>Log-Tool-For-Party-And-Friends</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<build>
 		<plugins>
@@ -34,7 +34,7 @@
 		</repository>
 		<repository>
 			<id>Simonsators-Repo</id>
-			<url>https://simonsator.de/repo</url>
+			<url>http://simonsator.de/repo</url>
 		</repository>
 	</repositories>
 	<dependencies>
@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>BungeecordPartyAndFriends</artifactId>
-			<version>LATEST</version>
+			<version>1.0.51</version>
 		</dependency>
 	</dependencies>
 </project>
