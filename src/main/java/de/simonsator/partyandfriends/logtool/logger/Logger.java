@@ -35,7 +35,7 @@ public abstract class Logger {
 					e.printStackTrace();
 				}
 			}
-		}, 0, 15, TimeUnit.MINUTES);
+		}, 15, 15, TimeUnit.MINUTES);
 	}
 
 	public abstract void writeln(OnlinePAFPlayer pSender, Object pReceiver, String pMessage);
