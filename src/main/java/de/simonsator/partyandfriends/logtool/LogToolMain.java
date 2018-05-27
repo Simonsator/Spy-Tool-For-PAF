@@ -4,9 +4,11 @@ import de.simonsator.partyandfriends.api.PAFExtension;
 import de.simonsator.partyandfriends.api.events.message.FriendMessageEvent;
 import de.simonsator.partyandfriends.api.events.message.FriendOnlineMessageEvent;
 import de.simonsator.partyandfriends.api.events.message.PartyMessageEvent;
+import de.simonsator.partyandfriends.logtool.configuration.LogToolConfig;
 import de.simonsator.partyandfriends.logtool.logger.FriendLogger;
 import de.simonsator.partyandfriends.logtool.logger.PartyLogger;
 import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.event.EventHandler;
 
 import java.io.File;
@@ -23,8 +25,11 @@ public class LogToolMain extends PAFExtension implements Listener {
 	@Override
 	public void onEnable() {
 		try {
-			partyLogger = new PartyLogger(new File(getConfigFolder(), "party.log"), this);
-			friendLogger = new FriendLogger(new File(getConfigFolder(), "friend.log"), this);
+			Configuration config = new LogToolConfig(new File(getConfigFolder(), "config.yml"), this).getCreatedConfiguration();
+			if (config.getBoolean("Party.LoggerEnabled"))
+				partyLogger = new PartyLogger(new File(getConfigFolder(), "party.log"), this);
+			if (config.getBoolean("Friends.LoggerEnabled"))
+				friendLogger = new FriendLogger(new File(getConfigFolder(), "friend.log"), this);
 			registerAsExtension();
 		} catch (IOException e) {
 			System.out.println("Fatal error");
@@ -36,8 +41,10 @@ public class LogToolMain extends PAFExtension implements Listener {
 	@Override
 	public void onDisable() {
 		try {
-			partyLogger.save();
-			friendLogger.save();
+			if (partyLogger != null)
+				partyLogger.save();
+			if (friendLogger != null)
+				friendLogger.save();
 			super.onDisable();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -46,7 +53,8 @@ public class LogToolMain extends PAFExtension implements Listener {
 
 	@EventHandler
 	public void friendMessage(FriendMessageEvent pEvent) {
-		friendLogger.writeln(pEvent.getSender(), pEvent.getReceiver(), pEvent.getMessage());
+		if (friendLogger != null)
+			friendLogger.writeln(pEvent.getSender(), pEvent.getReceiver(), pEvent.getMessage());
 	}
 
 	@EventHandler
@@ -56,6 +64,7 @@ public class LogToolMain extends PAFExtension implements Listener {
 
 	@EventHandler
 	public void partyMessage(PartyMessageEvent pEvent) {
-		partyLogger.writeln(pEvent.getSender(), pEvent.getParty(), pEvent.getMessage());
+		if (partyLogger != null)
+			partyLogger.writeln(pEvent.getSender(), pEvent.getParty(), pEvent.getMessage());
 	}
 }
