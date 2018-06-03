@@ -21,11 +21,16 @@ import java.io.IOException;
 public class LogToolMain extends PAFExtension implements Listener {
 	private PartyLogger partyLogger;
 	private FriendLogger friendLogger;
+	private Configuration config;
+
+	public Configuration getConfig() {
+		return config;
+	}
 
 	@Override
 	public void onEnable() {
 		try {
-			Configuration config = new LogToolConfig(new File(getConfigFolder(), "config.yml"), this).getCreatedConfiguration();
+			config = new LogToolConfig(new File(getConfigFolder(), "config.yml"), this).getCreatedConfiguration();
 			if (config.getBoolean("Party.LoggerEnabled"))
 				partyLogger = new PartyLogger(new File(getConfigFolder(), "party.log"), this);
 			if (config.getBoolean("Friends.LoggerEnabled"))
