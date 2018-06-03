@@ -18,5 +18,7 @@ public class LogToolConfig extends ConfigurationCreator {
 	private void loadDefaults() {
 		set("Party.LoggerEnabled", true);
 		set("Friends.LoggerEnabled", true);
+		set("Friends.SpyCommand.Use", true);
+
 	}
 }
