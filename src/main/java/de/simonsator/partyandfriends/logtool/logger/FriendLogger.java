@@ -39,7 +39,7 @@ public class FriendLogger extends Logger implements Listener {
 		PAFPlayer receiverPAFPlayer = ((PAFPlayer) pReceiver);
 		cache.add(pSender.getName() + "->" + ((PAFPlayer) pReceiver).getName() + ":" + pMessage);
 		for (FriendSpyContainer spyContainer : spyList) {
-			if (spyContainer.SPYED_ON.equals(pSender) || spyContainer.SPYED_ON.equals(pReceiver)) {
+			if ((spyContainer.SPYED_ON.equals(pSender) || spyContainer.SPYED_ON.equals(pReceiver)) && !(spyContainer.SPYER.equals(pSender) || spyContainer.SPYER.equals(pReceiver))) {
 				String message = (Friends.getInstance().getPrefix() + CONTENT_PATTERN.matcher(PLAYER_PATTERN.matcher(SENDER_NAME_PATTERN.matcher(Main.getInstance()
 						.getMessages().getString("Friends.Command.MSG.SentMessage")).replaceAll(Matcher.quoteReplacement(pSender.getDisplayName()))).replaceAll(Matcher.quoteReplacement(receiverPAFPlayer.getDisplayName()))).replaceAll(Matcher.quoteReplacement(pMessage.replace(" ", Main.getInstance().getMessages().getString("Friends.Command.MSG.ColorOfMessage")))));
 				spyContainer.SPYER.sendMessage(message);
