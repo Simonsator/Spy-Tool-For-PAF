@@ -29,7 +29,8 @@ public class FriendSpySubCommand extends FriendSubCommand {
 			pPlayer.sendMessage(PREFIX + LogToolMain.getInstance().getConfig().getString("Friends.SpyCommand.Messages.NowSpying").replace("[PLAYER]", spyOn.getDisplayName()));
 			return;
 		}
-		pPlayer.sendMessage(PREFIX + LogToolMain.getInstance().getConfig().getString("Friends.SpyCommand.Messages.AlreadySpying"));
+		FRIEND_LOGGER.removeFromSpyList(pPlayer, spyOn);
+		pPlayer.sendMessage(PREFIX + LogToolMain.getInstance().getConfig().getString("Friends.SpyCommand.Messages.NotSpying").replace("[PLAYER]", spyOn.getDisplayName()));
 	}
 
 	private boolean doesPlayerExist(OnlinePAFPlayer pPlayer, PAFPlayer pGivenPlayer) {
