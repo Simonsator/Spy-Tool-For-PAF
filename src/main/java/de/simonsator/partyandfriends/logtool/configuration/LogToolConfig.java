@@ -25,5 +25,6 @@ public class LogToolConfig extends ConfigurationCreator {
 		set("Friends.SpyCommand.Messages.CommandUsage", "&8/&5friend spy [name of the player]&r &8- &7Starts/Stops spying on a player");
 		set("Friends.SpyCommand.Messages.NowSpying", " &7You are now spying on &e[PLAYER]&7.");
 		set("Friends.SpyCommand.Messages.NotSpying", " &7You are not spying anymore on &e[PLAYER]&7.");
+		set("Friends.SpyCommand.Messages.ConNotSpyOnYourSelf", " &7You cannot spy on yourself&7.");
 	}
 }
