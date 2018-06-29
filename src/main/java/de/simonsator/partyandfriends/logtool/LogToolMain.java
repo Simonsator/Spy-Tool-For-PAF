@@ -78,7 +78,7 @@ public class LogToolMain extends PAFExtension implements Listener {
 
 	@EventHandler
 	public void friendMessage(FriendOnlineMessageEvent pEvent) {
-
+		friendMessage((FriendMessageEvent) pEvent);
 	}
 
 	@EventHandler
