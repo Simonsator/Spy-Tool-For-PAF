@@ -11,4 +11,11 @@ public class FriendSpyContainer {
 		SPYER = pSpyer;
 		SPYED_ON = pSpyedOn;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof FriendSpyContainer)
+			return SPYER.equals(((FriendSpyContainer) obj).SPYER) && SPYED_ON.equals(((FriendSpyContainer) obj).SPYED_ON);
+		return super.equals(obj);
+	}
 }
