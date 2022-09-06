@@ -1,5 +1,6 @@
 package de.simonsator.partyandfriends.logtool.logger;
 
+import de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter;
 import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayerManager;
@@ -55,17 +56,19 @@ public class FriendLogger extends Logger implements Listener {
 		return true;
 	}
 
-	public boolean removeFromSpyList(OnlinePAFPlayer pSpyer, PAFPlayer pSpyedOn) {
-		return spyList.remove(new FriendSpyContainer(pSpyer, pSpyedOn));
+	public void removeFromSpyList(OnlinePAFPlayer pSpyer, PAFPlayer pSpyedOn) {
+		spyList.remove(new FriendSpyContainer(pSpyer, pSpyedOn));
 	}
 
 	@EventHandler
 	public void onLeave(PlayerDisconnectEvent pEvent) {
-		OnlinePAFPlayer player = PAFPlayerManager.getInstance().getPlayer(pEvent.getPlayer());
-		for (int i = 0; i < spyList.size(); i++) {
-			if (spyList.get(i).SPYER.equals(player)) {
-				spyList.remove(i);
-			}
-		}
+		BukkitBungeeAdapter.getInstance().runAsync(LogToolMain.getInstance(), () -> {
+			OnlinePAFPlayer player = PAFPlayerManager.getInstance().getPlayer(pEvent.getPlayer());
+			List<FriendSpyContainer> toRemove = new ArrayList<>();
+			for (FriendSpyContainer spyContainer : spyList)
+				if (spyContainer.SPYER.equals(player))
+					toRemove.add(spyContainer);
+			spyList.removeAll(toRemove);
+		});
 	}
 }
