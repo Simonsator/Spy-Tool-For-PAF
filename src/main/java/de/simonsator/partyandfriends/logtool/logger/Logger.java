@@ -26,14 +26,11 @@ public abstract class Logger {
 			folder.mkdir();
 		if (!FILE.exists())
 			FILE.createNewFile();
-		ProxyServer.getInstance().getScheduler().schedule(pPlugin, new Runnable() {
-			@Override
-			public void run() {
-				try {
-					save();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		ProxyServer.getInstance().getScheduler().schedule(pPlugin, () -> {
+			try {
+				save();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}, 15, 15, TimeUnit.MINUTES);
 	}
@@ -41,9 +38,10 @@ public abstract class Logger {
 	public abstract void writeln(OnlinePAFPlayer pSender, Object pReceiver, String pMessage);
 
 	public void save() throws IOException {
-		FileOutputStream fos = new FileOutputStream(FILE, true);
-		for (String line : cache)
-			fos.write((line + "\n").getBytes());
-		cache = new ArrayList<>();
+		try (FileOutputStream fos = new FileOutputStream(FILE, true)) {
+			for (String line : cache)
+				fos.write((line + "\n").getBytes());
+			cache = new ArrayList<>();
+		}
 	}
 }
