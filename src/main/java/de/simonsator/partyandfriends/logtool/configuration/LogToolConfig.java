@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class LogToolConfig extends ConfigurationCreator {
 	public LogToolConfig(File file, PAFExtension pPlugin) throws IOException {
-		super(file, pPlugin);
+		super(file, pPlugin, true);
 		readFile();
 		loadDefaults();
 		saveFile();
