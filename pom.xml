@@ -6,7 +6,7 @@
 
 	<groupId>de.simonsator</groupId>
 	<artifactId>Log-Tool-For-Party-And-Friends</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.5-RELEASE</version>
 
 	<build>
 		<plugins>
