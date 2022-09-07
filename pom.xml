@@ -33,6 +33,10 @@
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</repository>
 		<repository>
+			<id>papermc</id>
+			<url>https://repo.papermc.io/repository/maven-public/</url>
+		</repository>
+		<repository>
 			<id>Simonsators-Repo</id>
 			<url>https://simonsator.de/repo</url>
 		</repository>
@@ -53,8 +57,19 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.velocitypowered</groupId>
+			<artifactId>velocity-api</artifactId>
+			<version>3.1.2-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>de.simonsator</groupId>
 			<artifactId>BungeecordPartyAndFriends</artifactId>
+			<version>1.0.89</version>
+		</dependency>
+		<dependency>
+			<groupId>de.simonsator</groupId>
+			<artifactId>VelocityPoweredPartyAndFriends</artifactId>
 			<version>1.0.89</version>
 		</dependency>
 	</dependencies>
