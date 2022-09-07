@@ -9,8 +9,8 @@ import de.simonsator.partyandfriends.logtool.configuration.LogToolConfig;
 import de.simonsator.partyandfriends.logtool.logger.FriendLogger;
 import de.simonsator.partyandfriends.logtool.logger.PartyLogger;
 import de.simonsator.partyandfriends.logtool.subcommands.friends.FriendSpySubCommand;
+import de.simonsator.partyandfriends.utilities.ConfigurationCreator;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.event.EventHandler;
 
 import java.io.File;
@@ -24,13 +24,13 @@ public class LogToolMain extends PAFExtension implements Listener {
 	private static LogToolMain instance;
 	private PartyLogger partyLogger;
 	private FriendLogger friendLogger;
-	private Configuration config;
+	private ConfigurationCreator config;
 
 	public static LogToolMain getInstance() {
 		return instance;
 	}
 
-	public Configuration getConfig() {
+	public ConfigurationCreator getConfig() {
 		return config;
 	}
 
@@ -38,7 +38,7 @@ public class LogToolMain extends PAFExtension implements Listener {
 	public void onEnable() {
 		instance = this;
 		try {
-			config = new LogToolConfig(new File(getConfigFolder(), "config.yml"), this).getCreatedConfiguration();
+			config = new LogToolConfig(new File(getConfigFolder(), "config.yml"), this);
 			if (config.getBoolean("Party.LoggerEnabled"))
 				partyLogger = new PartyLogger(new File(getConfigFolder(), "party.log"), this);
 			if (config.getBoolean("Friends.LoggerEnabled"))
