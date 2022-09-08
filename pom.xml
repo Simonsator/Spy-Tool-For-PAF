@@ -6,7 +6,7 @@
 
 	<groupId>de.simonsator</groupId>
 	<artifactId>Log-Tool-For-Party-And-Friends-Velocity</artifactId>
-	<version>1.0.5-RELEASE</version>
+	<version>1.0.6-RELEASE</version>
 
 	<build>
 		<plugins>
@@ -20,6 +20,13 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>3.5.2</version>
+			</extension>
+		</extensions>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -50,4 +57,10 @@
 			<version>1.0.89</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>simonsators-web-server</id>
+			<url>sftp://ssh.strato.de/simonsator/repo</url>
+		</repository>
+	</distributionManagement>
 </project>
