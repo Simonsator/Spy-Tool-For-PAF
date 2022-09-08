@@ -1,30 +1,34 @@
 package de.simonsator.partyandfriends.velocity.logtool;
 
-import de.simonsator.partyandfriends.api.PAFExtension;
-import de.simonsator.partyandfriends.api.events.message.FriendMessageEvent;
-import de.simonsator.partyandfriends.api.events.message.FriendOnlineMessageEvent;
-import de.simonsator.partyandfriends.api.events.message.PartyMessageEvent;
-import de.simonsator.partyandfriends.friends.commands.Friends;
+import com.velocitypowered.api.event.Subscribe;
+import de.simonsator.partyandfriends.velocity.api.PAFExtension;
+import de.simonsator.partyandfriends.velocity.api.events.message.FriendMessageEvent;
+import de.simonsator.partyandfriends.velocity.api.events.message.FriendOnlineMessageEvent;
+import de.simonsator.partyandfriends.velocity.api.events.message.PartyMessageEvent;
+import de.simonsator.partyandfriends.velocity.friends.commands.Friends;
 import de.simonsator.partyandfriends.velocity.logtool.configuration.LogToolConfig;
+import de.simonsator.partyandfriends.velocity.logtool.subcommands.friends.FriendSpySubCommand;
 import de.simonsator.partyandfriends.velocity.logtool.logger.FriendLogger;
 import de.simonsator.partyandfriends.velocity.logtool.logger.PartyLogger;
-import de.simonsator.partyandfriends.velocity.logtool.subcommands.friends.FriendSpySubCommand;
-import de.simonsator.partyandfriends.utilities.ConfigurationCreator;
-import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.event.EventHandler;
+import de.simonsator.partyandfriends.velocity.utilities.ConfigurationCreator;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * @author simonbrungs
  * @version 1.0.0 20.11.16
  */
-public class LogToolMain extends PAFExtension implements Listener {
+public class LogToolMain extends PAFExtension {
 	private static LogToolMain instance;
 	private PartyLogger partyLogger;
 	private FriendLogger friendLogger;
 	private ConfigurationCreator config;
+
+	public LogToolMain(Path folder) {
+		super(folder);
+	}
 
 	public static LogToolMain getInstance() {
 		return instance;
@@ -54,7 +58,12 @@ public class LogToolMain extends PAFExtension implements Listener {
 			System.out.println("Fatal error");
 			e.printStackTrace();
 		}
-		getProxy().getPluginManager().registerListener(this, this);
+		LogToolLoader.server.getEventManager().register(this, this);
+	}
+
+	@Override
+	public String getName() {
+		return "LogTool";
 	}
 
 	@Override
@@ -70,18 +79,18 @@ public class LogToolMain extends PAFExtension implements Listener {
 		}
 	}
 
-	@EventHandler
+	@Subscribe
 	public void friendMessage(FriendMessageEvent pEvent) {
 		if (friendLogger != null)
 			friendLogger.writeln(pEvent.getSender(), pEvent.getReceiver(), pEvent.getMessage());
 	}
 
-	@EventHandler
+	@Subscribe
 	public void friendMessage(FriendOnlineMessageEvent pEvent) {
 		friendMessage((FriendMessageEvent) pEvent);
 	}
 
-	@EventHandler
+	@Subscribe
 	public void partyMessage(PartyMessageEvent pEvent) {
 		if (partyLogger != null)
 			partyLogger.writeln(pEvent.getSender(), pEvent.getParty(), pEvent.getMessage());

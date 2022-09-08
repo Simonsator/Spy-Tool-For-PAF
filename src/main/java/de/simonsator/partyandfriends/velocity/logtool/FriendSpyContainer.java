@@ -1,7 +1,7 @@
 package de.simonsator.partyandfriends.velocity.logtool;
 
-import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
-import de.simonsator.partyandfriends.api.pafplayers.PAFPlayer;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.OnlinePAFPlayer;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.PAFPlayer;
 
 public class FriendSpyContainer {
 	public final OnlinePAFPlayer SPYER;

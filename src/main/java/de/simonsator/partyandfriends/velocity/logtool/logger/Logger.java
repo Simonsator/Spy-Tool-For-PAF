@@ -1,8 +1,8 @@
 package de.simonsator.partyandfriends.velocity.logtool.logger;
 
-import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.plugin.Plugin;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.OnlinePAFPlayer;
+import de.simonsator.partyandfriends.velocity.logtool.LogToolLoader;
+import de.simonsator.partyandfriends.velocity.logtool.LogToolMain;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,20 +19,20 @@ public abstract class Logger {
 	private final File FILE;
 	protected List<String> cache = new ArrayList<>();
 
-	public Logger(File pFile, Plugin pPlugin) throws IOException {
+	public Logger(File pFile, LogToolMain pPlugin) throws IOException {
 		FILE = pFile;
 		File folder = FILE.getParentFile();
 		if (!folder.exists())
 			folder.mkdir();
 		if (!FILE.exists())
 			FILE.createNewFile();
-		ProxyServer.getInstance().getScheduler().schedule(pPlugin, () -> {
+		LogToolLoader.server.getScheduler().buildTask(pPlugin, () -> {
 			try {
 				save();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}, 15, 15, TimeUnit.MINUTES);
+		}).delay(15, TimeUnit.MINUTES).repeat(15, TimeUnit.MINUTES).schedule();
 	}
 
 	public abstract void writeln(OnlinePAFPlayer pSender, Object pReceiver, String pMessage);

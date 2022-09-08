@@ -1,16 +1,16 @@
 package de.simonsator.partyandfriends.velocity.logtool.logger;
 
-import de.simonsator.partyandfriends.api.adapter.BukkitBungeeAdapter;
-import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
-import de.simonsator.partyandfriends.api.pafplayers.PAFPlayer;
-import de.simonsator.partyandfriends.api.pafplayers.PAFPlayerManager;
-import de.simonsator.partyandfriends.friends.commands.Friends;
+import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
+import de.simonsator.partyandfriends.velocity.api.adapter.BukkitBungeeAdapter;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.OnlinePAFPlayer;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.PAFPlayer;
+import de.simonsator.partyandfriends.velocity.api.pafplayers.PAFPlayerManager;
+import de.simonsator.partyandfriends.velocity.friends.commands.Friends;
 import de.simonsator.partyandfriends.velocity.logtool.FriendSpyContainer;
+import de.simonsator.partyandfriends.velocity.logtool.LogToolLoader;
 import de.simonsator.partyandfriends.velocity.logtool.LogToolMain;
-import de.simonsator.partyandfriends.main.Main;
-import net.md_5.bungee.api.event.PlayerDisconnectEvent;
-import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.event.EventHandler;
+import de.simonsator.partyandfriends.velocity.main.Main;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,20 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 
-import static de.simonsator.partyandfriends.utilities.PatterCollection.*;
+import static de.simonsator.partyandfriends.velocity.utilities.PatterCollection.*;
 
 /**
  * @author simonbrungs
  * @version 1.0.0 20.11.16
  */
-public class FriendLogger extends Logger implements Listener {
+public class FriendLogger extends Logger {
 	private List<FriendSpyContainer> spyList;
 
 	public FriendLogger(File pFile, LogToolMain pPlugin) throws IOException {
 		super(pFile, pPlugin);
 		if (pPlugin.getConfig().getBoolean("Friends.SpyCommand.Use")) {
 			spyList = new ArrayList<>();
-			pPlugin.getProxy().getPluginManager().registerListener(pPlugin, this);
+			LogToolLoader.server.getEventManager().register(pPlugin, this);
 		}
 	}
 
@@ -60,8 +60,8 @@ public class FriendLogger extends Logger implements Listener {
 		spyList.remove(new FriendSpyContainer(pSpyer, pSpyedOn));
 	}
 
-	@EventHandler
-	public void onLeave(PlayerDisconnectEvent pEvent) {
+	@Subscribe
+	public void onLeave(DisconnectEvent pEvent) {
 		BukkitBungeeAdapter.getInstance().runAsync(LogToolMain.getInstance(), () -> {
 			OnlinePAFPlayer player = PAFPlayerManager.getInstance().getPlayer(pEvent.getPlayer());
 			List<FriendSpyContainer> toRemove = new ArrayList<>();

@@ -1,6 +1,0 @@
-name: Log-Tool-For-PAF
-version: ${project.version}
-author: Simonsator
-depends: [PartyAndFriends]
-main: de.simonsator.partyandfriends.logtool.LogToolMain
-description: An add-on for party and friends to log things that are written via /msg or /partychat

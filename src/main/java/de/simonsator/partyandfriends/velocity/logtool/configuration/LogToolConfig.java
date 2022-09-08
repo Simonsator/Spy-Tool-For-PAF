@@ -1,7 +1,7 @@
 package de.simonsator.partyandfriends.velocity.logtool.configuration;
 
-import de.simonsator.partyandfriends.api.PAFExtension;
-import de.simonsator.partyandfriends.utilities.ConfigurationCreator;
+import de.simonsator.partyandfriends.velocity.api.PAFExtension;
+import de.simonsator.partyandfriends.velocity.utilities.ConfigurationCreator;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,6 @@ public class LogToolConfig extends ConfigurationCreator {
 		readFile();
 		loadDefaults();
 		saveFile();
-		process(configuration);
 	}
 
 	private void loadDefaults() {

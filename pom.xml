@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.simonsator</groupId>
-	<artifactId>Log-Tool-For-Party-And-Friends</artifactId>
+	<artifactId>Log-Tool-For-Party-And-Friends-Velocity</artifactId>
 	<version>1.0.5-RELEASE</version>
 
 	<build>
@@ -29,8 +29,8 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>bungeecord-repo</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>papermc</id>
+			<url>https://repo.papermc.io/repository/maven-public/</url>
 		</repository>
 		<repository>
 			<id>Simonsators-Repo</id>
@@ -39,22 +39,14 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>net.md-5</groupId>
-			<artifactId>bungeecord-api</artifactId>
-			<version>1.19-R0.1-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.md-5</groupId>
-			<artifactId>bungeecord-api</artifactId>
-			<version>1.19-R0.1-SNAPSHOT</version>
-			<type>javadoc</type>
+			<groupId>com.velocitypowered</groupId>
+			<artifactId>velocity-api</artifactId>
+			<version>3.1.2-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>de.simonsator</groupId>
-			<artifactId>BungeecordPartyAndFriends</artifactId>
+			<artifactId>VelocityPoweredPartyAndFriends</artifactId>
 			<version>1.0.89</version>
 		</dependency>
 	</dependencies>
