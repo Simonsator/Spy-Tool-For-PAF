@@ -1,4 +1,4 @@
-package de.simonsator.partyandfriends.logtool.configuration;
+package de.simonsator.partyandfriends.velocity.logtool.configuration;
 
 import de.simonsator.partyandfriends.api.PAFExtension;
 import de.simonsator.partyandfriends.utilities.ConfigurationCreator;

@@ -1,12 +1,12 @@
-package de.simonsator.partyandfriends.logtool.subcommands.friends;
+package de.simonsator.partyandfriends.velocity.logtool.subcommands.friends;
 
 import de.simonsator.partyandfriends.api.friends.abstractcommands.FriendSubCommand;
 import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayerManager;
-import de.simonsator.partyandfriends.logtool.FriendSpyContainer;
-import de.simonsator.partyandfriends.logtool.LogToolMain;
-import de.simonsator.partyandfriends.logtool.logger.FriendLogger;
+import de.simonsator.partyandfriends.velocity.logtool.FriendSpyContainer;
+import de.simonsator.partyandfriends.velocity.logtool.LogToolMain;
+import de.simonsator.partyandfriends.velocity.logtool.logger.FriendLogger;
 
 import java.util.List;
 

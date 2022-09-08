@@ -1,4 +1,4 @@
-package de.simonsator.partyandfriends.logtool;
+package de.simonsator.partyandfriends.velocity.logtool;
 
 import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayer;

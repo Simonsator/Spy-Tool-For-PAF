@@ -1,14 +1,14 @@
-package de.simonsator.partyandfriends.logtool;
+package de.simonsator.partyandfriends.velocity.logtool;
 
 import de.simonsator.partyandfriends.api.PAFExtension;
 import de.simonsator.partyandfriends.api.events.message.FriendMessageEvent;
 import de.simonsator.partyandfriends.api.events.message.FriendOnlineMessageEvent;
 import de.simonsator.partyandfriends.api.events.message.PartyMessageEvent;
 import de.simonsator.partyandfriends.friends.commands.Friends;
-import de.simonsator.partyandfriends.logtool.configuration.LogToolConfig;
-import de.simonsator.partyandfriends.logtool.logger.FriendLogger;
-import de.simonsator.partyandfriends.logtool.logger.PartyLogger;
-import de.simonsator.partyandfriends.logtool.subcommands.friends.FriendSpySubCommand;
+import de.simonsator.partyandfriends.velocity.logtool.configuration.LogToolConfig;
+import de.simonsator.partyandfriends.velocity.logtool.logger.FriendLogger;
+import de.simonsator.partyandfriends.velocity.logtool.logger.PartyLogger;
+import de.simonsator.partyandfriends.velocity.logtool.subcommands.friends.FriendSpySubCommand;
 import de.simonsator.partyandfriends.utilities.ConfigurationCreator;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;

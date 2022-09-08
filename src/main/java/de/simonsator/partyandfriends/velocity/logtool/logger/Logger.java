@@ -1,4 +1,4 @@
-package de.simonsator.partyandfriends.logtool.logger;
+package de.simonsator.partyandfriends.velocity.logtool.logger;
 
 import de.simonsator.partyandfriends.api.pafplayers.OnlinePAFPlayer;
 import net.md_5.bungee.api.ProxyServer;
