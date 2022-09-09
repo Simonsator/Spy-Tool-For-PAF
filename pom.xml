@@ -6,7 +6,7 @@
 
 	<groupId>de.simonsator</groupId>
 	<artifactId>Log-Tool-For-Party-And-Friends-Velocity</artifactId>
-	<version>1.0.6-RELEASE</version>
+	<version>1.0.7-RELEASE</version>
 
 	<build>
 		<plugins>
