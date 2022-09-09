@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import de.simonsator.partyandfriends.velocity.VelocityExtensionLoadingInfo;
 import de.simonsator.partyandfriends.velocity.main.PAFPlugin;
@@ -21,7 +22,7 @@ public class LogToolLoader {
 	public static ProxyServer server = null;
 
 	@Inject
-	public LogToolLoader(ProxyServer pServer, Path pFolder) {
+	public LogToolLoader(@DataDirectory final Path pFolder, ProxyServer pServer) {
 		server = pServer;
 		folder = pFolder;
 	}
