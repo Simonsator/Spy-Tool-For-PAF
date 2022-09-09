@@ -11,7 +11,7 @@ import de.simonsator.partyandfriends.velocity.VelocityExtensionLoadingInfo;
 import de.simonsator.partyandfriends.velocity.main.PAFPlugin;
 
 import java.nio.file.Path;
-@Plugin(id = "log-tool-for-paf", name = "Log-Tool-For-PAF", version = "1.0.5-SNAPSHOT",
+@Plugin(id = "log-tool-for-paf", name = "Log-Tool-For-PAF", version = "1.0.7-RELEASE",
 		url = "https://www.spigotmc.org/resources/spy-tool-for-party-and-friends-for-bungeecord.32146/",
 		description = "An add-on for party and friends to log things that are written via /msg or /partychat"
 		, authors = {"JT122406", "Simonsator"}, dependencies = {@Dependency(id = "partyandfriends")})
@@ -32,7 +32,7 @@ public class LogToolLoader {
 		PAFPlugin.loadExtension(new VelocityExtensionLoadingInfo(new LogToolMain(folder),
 				"log-tool-for-paf",
 				"Log-Tool-For-PAFs",
-				"1.0.5-RELEASE", "JT122406, Simonsator"));
+				"1.0.7-RELEASE", "JT122406, Simonsator"));
 	}
 
 }

@@ -2,14 +2,16 @@ package de.simonsator.partyandfriends.velocity.logtool;
 
 import com.velocitypowered.api.event.Subscribe;
 import de.simonsator.partyandfriends.velocity.api.PAFExtension;
+import de.simonsator.partyandfriends.velocity.api.adapter.BukkitBungeeAdapter;
 import de.simonsator.partyandfriends.velocity.api.events.message.FriendMessageEvent;
 import de.simonsator.partyandfriends.velocity.api.events.message.FriendOnlineMessageEvent;
 import de.simonsator.partyandfriends.velocity.api.events.message.PartyMessageEvent;
 import de.simonsator.partyandfriends.velocity.friends.commands.Friends;
 import de.simonsator.partyandfriends.velocity.logtool.configuration.LogToolConfig;
-import de.simonsator.partyandfriends.velocity.logtool.subcommands.friends.FriendSpySubCommand;
 import de.simonsator.partyandfriends.velocity.logtool.logger.FriendLogger;
 import de.simonsator.partyandfriends.velocity.logtool.logger.PartyLogger;
+import de.simonsator.partyandfriends.velocity.logtool.subcommands.friends.FriendSpySubCommand;
+import de.simonsator.partyandfriends.velocity.main.Main;
 import de.simonsator.partyandfriends.velocity.utilities.ConfigurationCreator;
 
 import java.io.File;
@@ -58,7 +60,7 @@ public class LogToolMain extends PAFExtension {
 			System.out.println("Fatal error");
 			e.printStackTrace();
 		}
-		LogToolLoader.server.getEventManager().register(this, this);
+		BukkitBungeeAdapter.getInstance().registerListener(this, Main.getInstance());
 	}
 
 	@Override
