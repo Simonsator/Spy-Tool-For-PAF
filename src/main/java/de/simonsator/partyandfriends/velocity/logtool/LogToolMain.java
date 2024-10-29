@@ -87,10 +87,6 @@ public class LogToolMain extends PAFExtension {
 			friendLogger.writeln(pEvent.getSender(), pEvent.getReceiver(), pEvent.getMessage());
 	}
 
-	@Subscribe
-	public void friendMessage(FriendOnlineMessageEvent pEvent) {
-		friendMessage((FriendMessageEvent) pEvent);
-	}
 
 	@Subscribe
 	public void partyMessage(PartyMessageEvent pEvent) {
